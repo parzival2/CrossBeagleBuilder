@@ -1,2 +1,29 @@
 {
+    "version": "0.2.0",
+    "configurations": [{
+        "name": "Remote GDB",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${command:cmake.launchTargetPath}",
+        "args": [],
+        "stopAtEntry": true,
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "MIMode": "gdb",
+        "externalConsole": true,
+        "sourceFileMap":{
+            "/build": "${workspaceFolder}"
+        },
+        "targetArchitecture": "arm",
+        "setupCommands": [
+        {
+            "description": "Enable pretty-printing for gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+        },
+        {"text": "set sysroot ${env:BEAGLE_SYSROOT}"}
+        ],
+        "miDebuggerPath": "${env:CROSS_COMPILER_PATH}/${env:CROSS_COMPILER_FRONT}-gdb",
+        "miDebuggerServerAddress": "${config:Beaglebone.TARGET_IP}:3000",
+    }]
 }

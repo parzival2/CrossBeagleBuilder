@@ -4,8 +4,33 @@
         {
             "label": "echo",
             "type": "shell",
-            "command": "echo ${env:CROSS_COMPILER_PATH}"
-        }
+            "command": "echo ${command:cmake.launchTargetFilename}",
+        },
+        {
+            "label": "echo-sysroot",
+            "type": "shell",
+            "command": "echo ${env:BEAGLE_SYSROOT}",
+        },
+        {
+            "label": "deploy-gdb",
+            "isBackground": true,
+            "problemMatcher":{
+                "base": "$gcc",
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern":  "Deploying to target",
+                    "endsPattern":  "Starting GDB Server on target"
+                }
+            },
+            "type": "shell",
+            "command": "sh",
+            "args": [
+                "deploy-gdb.sh",
+                "${config:Beaglebone.TARGET_IP}",
+                "${command:cmake.launchTargetFilename}",
+                "${command:cmake.launchTargetPath}"
+            ]
+        },
     ],
     
 }
