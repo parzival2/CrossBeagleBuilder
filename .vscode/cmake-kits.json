@@ -1,0 +1,6 @@
+[
+    {
+        "name": "Beaglebone",
+        "toolchainFile": "${workspaceFolder}/cmake/BeagleToolchain.cmake"
+    }
+]

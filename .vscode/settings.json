@@ -1,0 +1,17 @@
+{
+    "cmake.configureOnOpen": true, 
+    "editor.formatOnSave": true,
+    "editor.fontFamily": "Source Code Pro",
+    "editor.fontLigatures": false,
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+    "clangd.checkUpdates": true,
+    "clangd.arguments": [
+        "-log=verbose",
+        "-pretty",
+        "--background-index",
+        "--compile-commands-dir=${workspaceFolder}/build",
+        "--enable-config=1",
+        "--query-driver=${env:CROSS_COMPILER_PATH}/${env:CROSS_COMPILER_FRONT}-gcc"
+    ],
+    "cmake.generator": "Unix Makefiles"
+}
