@@ -3,6 +3,7 @@
     "editor.formatOnSave": true,
     "editor.fontFamily": "Source Code Pro",
     "editor.fontLigatures": false,
+    "C_Cpp.intelliSenseEngine": "disabled",
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
     "clangd.checkUpdates": true,
     "clangd.arguments": [
@@ -13,5 +14,8 @@
         "--enable-config=1",
         "--query-driver=${env:CROSS_COMPILER_PATH}/${env:CROSS_COMPILER_FRONT}-gcc"
     ],
-    "cmake.generator": "Unix Makefiles"
+    "cmake.generator": "Unix Makefiles",
+    "Beaglebone": {
+        "TARGET_IP": "192.168.7.2"
+    }
 }
