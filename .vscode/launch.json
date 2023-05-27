@@ -8,6 +8,7 @@
         "args": [],
         "stopAtEntry": true,
         "cwd": "${workspaceFolder}",
+        "preLaunchTask": "Copy and Run gdb",
         "environment": [],
         "MIMode": "gdb",
         "externalConsole": true,

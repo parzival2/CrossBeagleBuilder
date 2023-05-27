@@ -12,25 +12,37 @@
             "command": "echo ${env:BEAGLE_SYSROOT}",
         },
         {
-            "label": "deploy-gdb",
-            "isBackground": true,
-            "problemMatcher":{
-                "base": "$gcc",
-                "background": {
-                    "activeOnStart": true,
-                    "beginsPattern":  "Deploying to target",
-                    "endsPattern":  "Starting GDB Server on target"
-                }
-            },
+            "label": "Copy and Run Executable",
             "type": "shell",
-            "command": "sh",
-            "args": [
-                "deploy-gdb.sh",
-                "${config:Beaglebone.TARGET_IP}",
-                "${command:cmake.launchTargetFilename}",
-                "${command:cmake.launchTargetPath}"
-            ]
+            "command": "scp ${command:cmake.launchTargetPath} debian@192.168.7.2:/home/debian && ssh debian@192.168.7.2 /home/debian/${command:cmake.launchTargetFilename}",
+            "group": {
+              "kind": "build",
+              "isDefault": true
+            },
+            "presentation": {
+              "reveal": "always",
+              "panel": "new"
+            }
         },
+        {
+            "label": "Kill gdbserver",
+            "type": "shell",
+            "command": "ssh debian@192.168.7.2 pkill -9 gdbserver && exit",
+            "presentation": {
+              "reveal": "always",
+              "panel": "new"
+            }
+        },
+        {
+            "label": "Copy and Run gdb",
+            "type": "shell",
+            "command": "scp ${command:cmake.launchTargetPath} debian@192.168.7.2:/home/debian && ssh debian@192.168.7.2 gdbserver localhost:3000 /home/debian/${command:cmake.launchTargetFilename}",
+            "isBackground": true,
+            "presentation": {
+              "reveal": "always",
+              "panel": "new"
+            }
+        }
     ],
     
 }
